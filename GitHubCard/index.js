@@ -87,6 +87,7 @@ function gitCard(obj) {
   name.classList.add('name');
   username.classList.add('username');
   a.classList.add('address');
+  
 
   card.appendChild(cardImage)
   card.appendChild(cardInfo)
@@ -102,7 +103,6 @@ function gitCard(obj) {
 
   cardImage.src = obj.avatar_url;
   name.textContent = obj.name;
-  name.style.color = "#ba1434";
   username.textContent = obj.login
   location.textContent = `Location: ${obj.location}`;
   profile.textContent = "Profile: ";
@@ -112,6 +112,17 @@ function gitCard(obj) {
   bio.textContent = `Bio: ${obj.bio}`;
   profile.appendChild(a);
 
+  name.style.color = "#ba1434";
+  username.style.color = "#ba1434";
+  location.style.color = "#ba1434";
+  profile.style.color = "#ba1434";
+  followers.style.color = "#ba1434";
+  following.style.color = "#ba1434";
+  bio.style.color = "#ba1434";
+  cardImage.style.border = "5px solid"
+  cardImage.style.borderColor = "#ba1434"
+  cardImage.style.borderRadius = "50%"
+  
   return card
 }
 /*
@@ -122,3 +133,13 @@ function gitCard(obj) {
     luishrd
     bigknell
 */
+
+axios.get("https://api.github.com/users/hillinm/followers")
+                            .then((response) => {
+                             response.data.forEach((person) => {
+                               axios.get(`https://api.github.com/users/${person.login}`).then((r) => {
+                                 container.appendChild(gitCard(r.data))
+                               })
+                            })
+                          })
+                            .catch ((err) => console.log(err));
