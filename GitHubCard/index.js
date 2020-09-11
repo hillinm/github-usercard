@@ -162,6 +162,7 @@ function gitCard(obj) {
   nodeId.style.color = "#ba1434";
   blog.style.color = "#ba1434";
   repos.style.color = "#ba1434";
+  GitHubCalendar(content, obj.login, { responsive: true });
 
   return card
 }
