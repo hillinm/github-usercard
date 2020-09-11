@@ -1,4 +1,6 @@
 import axios from 'axios';
+/*import { gsap } from "gsap";*/
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
@@ -81,13 +83,21 @@ function gitCard(obj) {
   const followers = document.createElement('p');
   const following = document.createElement('p');
   const bio = document.createElement('p');
+  const button = document.createElement('button');
+  const content = document.createElement('div');
+  const company = document.createElement('p');
+  const nodeId = document.createElement('p');
+  const blog = document.createElement('p');
+  const repos = document.createElement('p');
 
+  
   card.classList.add('card');
   cardInfo.classList.add('card-info');
   name.classList.add('name');
   username.classList.add('username');
   a.classList.add('address');
-  
+  cardInfo.classList.add('button');
+  content.classList.add('content')
 
   card.appendChild(cardImage)
   card.appendChild(cardInfo)
@@ -95,11 +105,15 @@ function gitCard(obj) {
   cardInfo.appendChild(username)
   cardInfo.appendChild(location)
   cardInfo.appendChild(profile)
-  
-
   cardInfo.appendChild(followers);
   cardInfo.appendChild(following);
   cardInfo.appendChild(bio);
+  cardInfo.appendChild(button);
+  cardInfo.appendChild(content);
+  content.appendChild(company);
+  content.appendChild(nodeId);
+  content.appendChild(blog);
+  content.appendChild(repos);
 
   cardImage.src = obj.avatar_url;
   name.textContent = obj.name;
@@ -111,6 +125,25 @@ function gitCard(obj) {
   following.textContent = `Following: ${obj.following}`
   bio.textContent = `Bio: ${obj.bio}`;
   profile.appendChild(a);
+  button.textContent = "Click to Information"
+  button.addEventListener('click', () => {
+    cardInfo.classList.toggle("info-open");
+    button.textContent = cardInfo.classList.contains("info-open")
+    ? "Click to Close"
+    : "Click to Information";
+    if (cardInfo.classList.contains("info-open")) {
+      company.textContent = `Employer: ${obj.company}`;
+      nodeId.textContent = `Node ID: ${obj.node_id}`;
+      blog.textContent = `Blog Site: ${obj.blog}`;
+      repos.textContent = `Number of Repos ${obj.public_repos}`;
+    } else {
+      company.textContent = "";
+      nodeId.textContent = "";
+      blog.textContent = "";
+      repos.textContent = "";
+    }
+  })
+  
 
   name.style.color = "#ba1434";
   username.style.color = "#ba1434";
@@ -119,10 +152,17 @@ function gitCard(obj) {
   followers.style.color = "#ba1434";
   following.style.color = "#ba1434";
   bio.style.color = "#ba1434";
-  cardImage.style.border = "5px solid"
-  cardImage.style.borderColor = "#ba1434"
-  cardImage.style.borderRadius = "50%"
-  
+  cardImage.style.border = "5px solid";
+  cardImage.style.borderColor = "#ba1434";
+  cardImage.style.borderRadius = "50%";
+  button.style.color = "#ba1434";
+  button.style.backgroundColor = "White";
+  button.style.borderColor = "#ba1434";
+  company.style.color = "#ba1434";
+  nodeId.style.color = "#ba1434";
+  blog.style.color = "#ba1434";
+  repos.style.color = "#ba1434";
+
   return card
 }
 /*
