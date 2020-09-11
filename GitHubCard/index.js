@@ -76,6 +76,7 @@ function gitCard(obj) {
   const cardImage = document.createElement('img');
   const cardInfo = document.createElement('div');
   const name = document.createElement('h3');
+
   const username = document.createElement('p');
   const location = document.createElement('p');
   const profile = document.createElement('p');
@@ -89,6 +90,7 @@ function gitCard(obj) {
   const nodeId = document.createElement('p');
   const blog = document.createElement('p');
   const repos = document.createElement('p');
+  const calendar = document.createElement('div');
 
   
   card.classList.add('card');
@@ -98,6 +100,7 @@ function gitCard(obj) {
   a.classList.add('address');
   cardInfo.classList.add('button');
   content.classList.add('content')
+  calendar.classList.add('calendar')
 
   card.appendChild(cardImage)
   card.appendChild(cardInfo)
@@ -114,6 +117,7 @@ function gitCard(obj) {
   content.appendChild(nodeId);
   content.appendChild(blog);
   content.appendChild(repos);
+  cardInfo.appendChild(calendar);
 
   cardImage.src = obj.avatar_url;
   name.textContent = obj.name;
@@ -162,7 +166,9 @@ function gitCard(obj) {
   nodeId.style.color = "#ba1434";
   blog.style.color = "#ba1434";
   repos.style.color = "#ba1434";
-  GitHubCalendar(content, obj.login, { responsive: true });
+
+  GitHubCalendar(calendar, obj.login, { responsive: true });
+
 
   return card
 }
