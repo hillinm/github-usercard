@@ -135,7 +135,7 @@ function gitCard(obj) {
       company.textContent = `Employer: ${obj.company}`;
       nodeId.textContent = `Node ID: ${obj.node_id}`;
       blog.textContent = `Blog Site: ${obj.blog}`;
-      repos.textContent = `Number of Repos ${obj.public_repos}`;
+      repos.textContent = `Number of Repos: ${obj.public_repos}`;
     } else {
       company.textContent = "";
       nodeId.textContent = "";
